@@ -1,0 +1,364 @@
+#pragma once
+
+constexpr float PI = 3.141592f;
+constexpr int VIRTUAL_KEY_MAX = 0xff;
+constexpr float SCROLL_SPEED = 5.f;
+constexpr float GRAVITY = 9.8f;
+constexpr float PLAYER_SPEED = 2.5f;
+
+enum WINDOW_SIZE
+{
+	WINDOW_WIDTH = 1024,
+	WINDOW_HEIGHT = 768,
+};
+
+enum PLAYER
+{
+	PLAYER_STAND_WIDHT = 70,
+	PLAYER_STAND_HEIGHT = 80,
+	PALYER_MAXHP = 2000,
+	PALYER_MAXMP = 1000,
+	PALYER_MAXSP = 1000,
+};
+
+enum ENEMY_SIZE
+{
+	WOLF_STAND_WIDTH = 80,
+	WOLF_STAND_HEIGHT = 90,
+
+	DARKCOW_STAND_WIDTH = 110,
+	DARKCOW_STAND_HEIGHT = 110,
+
+	CREEDWIZARD_STAND_WIDTH = 70,
+	CREEDWIZARD_STAND_HEIGHT = 110,
+
+	BOSS_STAND_WIDTH = 70,
+	BOSS_STAND_HEIGHT = 80,
+};
+
+// SOUND 
+enum CHANNAL
+{
+	BGM,
+	/*BGM_VILLAGE,
+	BGM_FIELD,*/
+	
+	ENEMY_SOUND,
+	BOSS_SOUND,
+	EFFECT_SOUND,
+	UI_SOUND,
+	BUTTON_SOUND,
+	PLAYER_SOUND,
+	DAMAGED_SOUND,
+	CHANNEL_END,
+};
+
+
+enum IMAGE_CLASSIFY
+{
+	STATIC,
+	DYNAMIC,
+	CLASSIFY_END,
+};
+
+enum class OBJECT_DIRECTION : size_t
+{
+	DIRECTION_UP,
+	DIRECTION_LEFT,
+	DIRECTION_RIGHT,
+	DIRECTION_DOWN,
+	DIRECTION_BARREL,
+};
+
+
+
+enum class SCENE_ID : size_t
+{
+	LOGO,
+	MENU,
+	VILLAGE,
+	FIELD,
+	DUNGEON,
+	BOSS,
+	END,
+};
+
+// MODE
+enum class MODE
+{
+	MOVE,
+	DAMAGED,
+	ATTACK,
+	HORCUT,
+	STAB,
+	VERCUT,
+	REST,
+	STAND,
+	EX_COLLISOIN,
+	FIRE,
+	SKILL,
+	AVOID,
+
+};
+
+/***********Type***********/
+enum class ANIM_TYPE : size_t
+{
+	PLAYER,
+	WEAPON,
+	JELLY,
+	WOLF,
+	DARKCOW,
+	CREEDWIZARD,
+	BOSS,
+	TYPE_END,
+};
+
+enum class IMAGE_TYPE : size_t
+{
+	ONLY_VIEW,
+	FUNCTION,
+	ATTACK,
+};
+
+enum OBJ_ID
+{
+	OBJ_PLAYER,
+	OBJ_ENEMY,
+	OBJ_WEAPON,
+	OBJ_BULLET,
+	OBJ_MOUSE,
+	OBJ_END,
+};
+
+enum OBJ_TYPE
+{
+	TYPE_PLAYER,
+	TYPE_JELLY,
+	TYPE_WOLF,
+	TYPE_DARKCOW,
+	TYPE_CREEDWIZARD,
+	TYPE_BOSS,
+};
+
+enum IMAGE_ID
+{
+	IMAGE_UI,
+	IMAGE_BUTTON,
+	IMAGE_END,
+};
+
+// Frame
+enum class PLAYER_FRAME : size_t
+{
+	STAND = 6,
+	WALK = 9,
+	RUN = 9,
+	HORCUT = 4,
+	STAB = 4,
+	VERCUT = 6,
+	REST = 0,
+	DAMAGE = 0,
+};
+enum class EFFECT_FRAME : size_t
+{
+	WRAPGATE = 23,
+	MOUSE_NORMAL = 12,
+	MOUSE_NOPASS = 11,
+	MOUSE_GATE = 3,
+	MOUSE_BATTLE = 6,
+	MOUSE_MAGIC = 8,
+	SMOKE = 16,
+	POP = 10,
+	MONSTER_HIT = 3,
+	DUST = 5,
+	BLOCK = 0,
+	CRASH = 3,
+	CRAY = 7,
+	GRAB = 5,
+	HAND = 5,
+	CASTING = 10,
+	BOTFIRE = 9,
+	WIZARDSKILL = 14,
+	BOMB = 25,
+	BULLET = 7,
+	PBULLET = 4,
+	ELECSHOCK = 8,
+	FREEZE = 6,
+	POTION = 5,
+	THUNDERBOLT = 12,
+	BOSSSKILL = 18,
+	MULTIATTACK = 40,
+
+};
+enum class JELLY_FRAME : size_t
+{
+	STAND = 4,
+	WALK = 7,
+	ATTACK = 11,
+	DEATH = 3,
+};
+
+enum class WOLF_FRAME : size_t
+{
+	STAND = 5,
+	WALK = 5,
+	ATTACK = 7,
+	DEATH = 0,
+};
+
+enum class DARKCOW_FRAME : size_t
+{
+	STAND = 5,
+	WALK = 7,
+	ATTACK = 9,
+	DEATH = 0,
+};
+
+enum class CREEDWIZARD_FRAME : size_t
+{
+	STAND = 3,
+	WALK = 4,
+	ATTACK = 14,
+	DEATH = 10,
+};
+
+enum class BOSS_FRAME : size_t
+{
+	STAND = 0,
+	WALK = 16,
+	ATTACK = 18,
+	AVOID = 19,
+	FIRE = 29,
+	SKILL = 3,
+	DEATH = 4,
+};
+
+
+// Frame Speed
+enum class FRAME_SPEED : size_t
+{
+	STAND = 200,
+	WALK = 80,
+	RUN = 50,
+	HORCUT = 130,
+	STAB = 130,
+	VERCUT = 130,
+	REST = 100,
+	DAMAGE = 20,
+	WRAPGATE = 30,
+	MOUSE_NORMAL = 50,
+	SMOKE = 100,
+	BLOCK = 100,
+	POP = 20,
+	MONSTER_HIT = 70,
+	DUST = 50,
+	CRASH = 140,
+	CRAY = 65,
+	HAND = 150,
+	GRAB = 100,
+	CASTING = 100,
+	BOTFIRE = 70,
+	WIZARDSKILL = 70,
+	BOMB = 15,
+	BULLET = 15,
+	PBULLET = 10,
+	ELECSHOCK = 40,
+	FREEZE = 400,
+	POTION = 20,
+	THUNDERBOLT = 58,
+	BOSSSKILL = 56,
+	MULTIATTACK = 37,
+};
+
+
+// Scene
+enum class PLAYER_SCENE : size_t
+{
+	STAND,
+	WALK,
+	RUN,
+	HORCUT,
+	STAB,
+	VERCUT,
+	DAMAGE,
+	REST,
+	SCENE_END = 8,
+};
+enum class MONSTER_SCENE : size_t
+{
+	STAND,
+	WALK,
+	ATTACK,
+	DEATH,
+};
+
+enum class BOSS_SCENE : size_t
+{
+	STAND,
+	WALK,
+	ATTACK,
+	FIRE,
+	AVOID,
+	SKILL,
+	DEATH,
+};
+
+//enum class OBJ_MOTION : size_t
+//{
+//	DOWN,
+//	LEFT,
+//	LD,
+//	LU,
+//	UP,
+//	RD,
+//	RIGHT,
+//	RU,
+//	MOTION_END
+//};
+
+enum OBJ_MOTION : size_t
+{
+	LEFT = 0,
+	LD,
+	LU,
+	UP,
+	RIGHT,
+	RU,
+	RD,
+	DOWN,	
+	MOTION_END
+};
+
+
+enum ENEMY
+{
+	JELLY_MAXHP = 100,
+	WOLF_MAXHP = 200,
+	DARKCOW_MAXHP = 300,
+	CREEDWIZARD_MAXHP = 300,
+	BOSS_MAXHP = 1200,
+	ENEMY_MAXNUM = 0,
+};
+
+
+
+enum OBJ_EVENT
+{
+	OBJ_NORMAL,
+	OBJ_DIE,
+};
+
+enum TILE
+{
+	TILE_WIDTH = 64,
+	TILE_HEIGHT = 64,
+
+	//TILE_YNUM = 20,
+	TILE_AVAILABLE = 0,
+	TILE_BLOCK,
+	TILE_WARP_ENTRANCE,
+	TILE_WARP_EXIT,
+	TILE_ENEMY_POSITION,
+
+};
